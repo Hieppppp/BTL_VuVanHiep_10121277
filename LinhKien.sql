@@ -349,22 +349,85 @@ ALTER TABLE [dbo].[TaiKhoans] CHECK CONSTRAINT [FK_Accounts_TypeAccounts]
 GO
 
 --Hàm thủ tục Procuduce-
+SELECT * FROM KhachHangs
+GO
 
 --Hàm tìm kiếm khách hàng theo mã id
+ 
+--CREATE PROCEDURE sp_khachhang_crate
+--(
+--@TenKH nvarchar(50),
+--@GioiTinh bit,
+--@DiaChi nvarchar(250),
+--@SDT nvarchar(50),
+--@Email nvarchar(250)
+--)
+--AS
+--	BEGIN 
+--		INSERT INTO KhachHangs(TenKH,GioiTinh,DiaChi,SDT,Email)
+--		VALUES(@TenKH,@GioiTinh,@DiaChi,@SDT,@Email);
+--	END;
+--GO
 
-CREATE PROCEDURE sp_khachhang_crate
+CREATE PROCEDURE sp_InsertKhachHang
 (
-@TenKH nvarchar(50),
-@GioiTinh bit,
-@DiaChi nvarchar(250),
-@SDT nvarchar(50),
-@Email nvarchar(250)
+    @TenKH nvarchar(50),
+    @GioiTinh bit,
+    @DiaChi nvarchar(250),
+    @SDT nvarchar(50),
+    @Email nvarchar(250)
 )
 AS
-	BEGIN 
-		INSERT INTO KhachHangs(TenKH,GioiTinh,DiaChi,SDT,Email)
-		VALUES(@TenKH,@GioiTinh,@DiaChi,@SDT,@Email);
-	END;
+BEGIN
+    INSERT INTO KhachHangs (TenKH, GioiTinh, DiaChi, SDT, Email)
+    VALUES (@TenKH, @GioiTinh, @DiaChi, @SDT, @Email)
+END;
 GO
+
+--Hàm thủ tục tìm kiếm khách hàng theo mã ID
+CREATE PROCEDURE sp_khachhang_get_by_id
+(
+	@Id int
+)
+AS
+BEGIN 
+	SELECT* FROM KhachHangs WHERE Id=@Id;
+END;
+GO
+
+--Hàm update khách hàng
+CREATE PROCEDURE sp_khachhang_update
+(
+	@Id int,
+	@TenKH nvarchar(50),
+	@GioiTinh BIT,
+	@DiaChi nvarchar(250),
+	@SDT nvarchar(50),
+	@Email nvarchar(250)
+)
+AS
+BEGIN
+	UPDATE KhachHangs
+		SET TenKH=@TenKH,
+		GioiTinh=@GioiTinh,
+		DiaChi=@DiaChi,
+		SDT=@SDT,
+		Email=@Email
+	WHERE id=@Id;
+END;
+GO
+
+--Hàm thủ tục xóa khách hàng
+CREATE PROCEDURE sp_khachhang_delete
+(
+	@Id int
+)
+AS
+BEGIN
+	DELETE FROM KhachHangs
+	WHERE Id=@Id;
+END;
+GO
+
 
 
