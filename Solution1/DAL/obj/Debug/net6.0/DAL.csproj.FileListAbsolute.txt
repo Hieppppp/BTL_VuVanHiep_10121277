@@ -1,0 +1,17 @@
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\bin\Debug\net6.0\DAL.deps.json
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\bin\Debug\net6.0\DAL.dll
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\bin\Debug\net6.0\DAL.pdb
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\bin\Debug\net6.0\DataModel.dll
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\bin\Debug\net6.0\DataModel.pdb
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.csproj.CopyComplete
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.dll
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\refint\DAL.dll
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.pdb
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\DAL\obj\Debug\net6.0\ref\DAL.dll
