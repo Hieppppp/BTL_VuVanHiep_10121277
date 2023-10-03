@@ -73,16 +73,17 @@ namespace DAL
         {
             try
             {
-                var dt = new 
+                var dt = new SqlParameter[]
                 {
-                    Id = id,
-                    TenKH = tenkh,
-                    GioiTinh = gioitinh,
-                    DiaChi = diachi,
-                    SDT = sdt,
-                    Email = email
+                    new SqlParameter("@Id", id),
+                    new SqlParameter("@TenKH", tenkh),
+                    new SqlParameter("@GioiTinh", gioitinh),
+                    new SqlParameter("@DiaChi", diachi),
+                    new SqlParameter("@SDT", sdt),
+                    new SqlParameter("@Email", email)
+
                 };
-                _context.Database.ExecuteSqlRaw("sp_khachhang_update", dt);
+                _context.Database.ExecuteSqlRaw("EXEC sp_khachhang_update @Id, @TenKH, @GioiTinh, @DiaChi, @SDT, @Email", dt);
 
             }
             catch(Exception ex)
@@ -95,19 +96,64 @@ namespace DAL
         {
             try
             {
-                var dt = new
-                {
-                    Id=id,
-
-                };
-                _context.Database.ExecuteSqlRaw("sp_khachhang_delete", dt);
-
+                var parameter = new SqlParameter("@Id", id);
+                _context.Database.ExecuteSqlRaw("EXEC sp_khachhang_delete @Id", parameter);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
+        //Search
+        public List<KhachHangModel> searchKhachHang(int pageIndex, int pageSize, out long total, string tenKhach, string diaChi)
+        {
+            total = 0;
+            List<KhachHangModel> khachHangs = new List<KhachHangModel>();
+
+            try
+            {
+                // Thực hiện truy vấn sử dụng Entity Framework Core
+                khachHangs = _context.KhachHangs
+                .FromSqlRaw("sp_khach_search @page_index, @page_size, @ten_khach, @dia_chi",
+                    new SqlParameter("@page_index", pageIndex),
+                    new SqlParameter("@page_size", pageSize),
+                    new SqlParameter("@ten_khach", tenKhach),
+                    new SqlParameter("@dia_chi", diaChi))
+                .Select(kh => new KhachHangModel
+                {
+                    Id = kh.Id,
+                    TenKh = kh.TenKh,
+                    GioiTinh = kh.GioiTinh,
+                    DiaChi =kh.DiaChi,
+                    Sdt=kh.Sdt,
+                    Email=kh.Email
+                    // Các thuộc tính khác tương tự
+                })
+                .ToList();
+
+
+                // Lấy tổng số lượng bản ghi
+                total = _context.KhachHangs
+                    .FromSqlRaw("sp_khach_search @page_index, @page_size, @ten_khach, @dia_chi",
+                        new SqlParameter("@page_index", pageIndex),
+                        new SqlParameter("@page_size", pageSize),
+                        new SqlParameter("@ten_khach", tenKhach),
+                        new SqlParameter("@dia_chi", diaChi))
+                    .Count();
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi
+                throw ex;
+            }
+
+            return khachHangs;
+        }
+
+
+
+
+
 
 
 

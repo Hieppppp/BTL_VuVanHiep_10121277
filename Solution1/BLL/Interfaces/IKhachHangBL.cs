@@ -16,6 +16,8 @@ namespace BLL.Interfaces
 
         void deleteKhachHang(int id);
 
+        List<KhachHangModel> searchKhachHang(int pageIndex, int pageSize, out long total, string tenKhach, string diaChi);
+
 
     }
 }

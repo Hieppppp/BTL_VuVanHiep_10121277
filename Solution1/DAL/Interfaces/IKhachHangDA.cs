@@ -15,5 +15,7 @@ namespace DAL.Interfaces
 
         void upDateKhachHang(int id, string tenkh, bool gioitinh, string diachi, string sdt, string email);
         void deleteKhachHang(int id);
+
+        List<KhachHangModel> searchKhachHang(int pageIndex, int pageSize, out long total, string tenKhach, string diaChi);
     }
 }

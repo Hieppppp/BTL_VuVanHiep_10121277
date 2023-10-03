@@ -428,6 +428,58 @@ BEGIN
 	WHERE Id=@Id;
 END;
 GO
+--Tìm kiếm trang khách hàng
+CREATE PROCEDURE sp_khach_search (@page_index  INT, 
+                                       @page_size   INT,
+									   @ten_khach Nvarchar(50),
+									   @dia_chi Nvarchar(250)
+									   )
+AS
+    BEGIN
+        DECLARE @RecordCount BIGINT;
+        IF(@page_size <> 0)
+            BEGIN
+						SET NOCOUNT ON;
+                        SELECT(ROW_NUMBER() OVER(
+                              ORDER BY TenKH ASC)) AS RowNumber, 
+                              k.Id,
+							  k.TenKH,
+							  k.DiaChi
+                        INTO #Results1
+                        FROM KhachHangs AS k
+					    WHERE  (@ten_khach = '' Or k.TenKH like N'%'+@ten_khach+'%') and						
+						(@dia_chi = '' Or k.DiaChi like N'%'+@dia_chi+'%');                   
+                        SELECT @RecordCount = COUNT(*)
+                        FROM #Results1;
+                        SELECT *, 
+                               @RecordCount AS RecordCount
+                        FROM #Results1
+                        WHERE ROWNUMBER BETWEEN(@page_index - 1) * @page_size + 1 AND(((@page_index - 1) * @page_size + 1) + @page_size) - 1
+                              OR @page_index = -1;
+                        DROP TABLE #Results1; 
+            END;
+            ELSE
+            BEGIN
+						SET NOCOUNT ON;
+                        SELECT(ROW_NUMBER() OVER(
+                              ORDER BY TenKH ASC)) AS RowNumber, 
+                              k.Id,
+							  k.TenKH,
+							  k.DiaChi
+                        INTO #Results2
+                        FROM KhachHangs AS k
+					    WHERE  (@ten_khach = '' Or k.TenKH like N'%'+@ten_khach+'%') and						
+						(@dia_chi = '' Or k.DiaChi like N'%'+@dia_chi+'%');                   
+                        SELECT @RecordCount = COUNT(*)
+                        FROM #Results2;
+                        SELECT *, 
+                               @RecordCount AS RecordCount
+                        FROM #Results2;                        
+                        DROP TABLE #Results1; 
+        END;
+    END;
+GO
+
 
 
 
