@@ -480,6 +480,31 @@ AS
     END;
 GO
 
+--Hàm procudre tài khoản
+CREATE PROCEDURE sp_login (@taikhoan nvarchar(50), @matkhau nvarchar(50))
+AS
+    BEGIN
+      SELECT  *
+      FROM TaiKhoans
+      where TenTaiKhoan= @taikhoan and MatKhau = @matkhau;
+    END;
+GO
+
+SET IDENTITY_INSERT [dbo].[LoaiTaiKhoans] ON 
+
+INSERT [dbo].[LoaiTaiKhoans] ([MaLoai], [TenLoai], [MoTa]) VALUES (1, N'Admin', NULL)
+INSERT [dbo].[LoaiTaiKhoans] ([MaLoai], [TenLoai], [MoTa]) VALUES (2, N'KhachHang', NULL)
+INSERT [dbo].[LoaiTaiKhoans] ([MaLoai], [TenLoai], [MoTa]) VALUES (3, N'QuanLy', NULL)
+SET IDENTITY_INSERT [dbo].[LoaiTaiKhoans] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[TaiKhoans] ON 
+INSERT [dbo].[TaiKhoans] ([MaTaiKhoan], [LoaiTaiKhoan], [TenTaiKhoan], [MatKhau], [Email]) VALUES (1, 1, N'admin', N'123456', N'shoplinhkiendt@gmail.com')
+INSERT [dbo].[TaiKhoans] ([MaTaiKhoan], [LoaiTaiKhoan], [TenTaiKhoan], [MatKhau], [Email]) VALUES (2, 1, N'vhiep', N'123456', N'vhiep@gmail.com')
+SET IDENTITY_INSERT [dbo].[TaiKhoans] OFF
+GO
+SELECT * from [TaiKhoans]
+
 
 
 

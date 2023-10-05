@@ -2,8 +2,12 @@ using BLL;
 using BLL.Interfaces;
 using DAL;
 using DAL.Interfaces;
+using DataModel;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using WebAPI.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,35 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// configure strongly typed settings objects
+IConfiguration configuration = builder.Configuration;
+var appSettingsSection = configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appSettingsSection);
+
+// configure jwt authentication
+var appSettings = appSettingsSection.Get<AppSettings>();
+var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+
+
 //builder.Services.AddDbContext<LINHKIENContext>(options =>
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("connect")));
 builder.Services.AddDbContext<LINHKIENContext>(options =>
@@ -22,6 +55,8 @@ builder.Services.AddDbContext<LINHKIENContext>(options =>
 //Khai báo ?? ch?y ??i t??ng
 builder.Services.AddScoped<IKhachHangBL,KhachHangBL>();
 builder.Services.AddScoped<IKhachHangDA,KhachHangDA>();
+builder.Services.AddScoped<IUserBL, UserBL>();
+builder.Services.AddScoped<IUserDA, UserDA>();
 
 var app = builder.Build();
 
