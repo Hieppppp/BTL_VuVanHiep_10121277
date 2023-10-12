@@ -1,28 +1,42 @@
-﻿using DataModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebAPI.Models;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Text.Json;
+using DataModel;
+using Microsoft.Extensions.Configuration;
 
-namespace DAL
+public class HoaDonDA
 {
-    public class HoaDonDA
+    private string connectionString;
+
+    public HoaDonDA(IConfiguration configuration)
     {
-        private LINHKIENContext _context;
+        connectionString = configuration.GetConnectionString("connect");
+    }
 
-        public HoaDonDA(LINHKIENContext context)
+    public HoaDonModel GetHoadonByID(int maHoaDon)
+    {
+        HoaDonModel hoadon = null;
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            _context = context;
+            connection.Open();
+            using (SqlCommand command = new SqlCommand("sp_hoadon_get_by_id", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@MaHoaDon", maHoaDon));
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string jsonResult = reader.GetString(0);
+                        hoadon = JsonSerializer.Deserialize<HoaDonModel>(jsonResult);
+                    }
+                }
+            }
         }
 
-        public HoaDonModel GetHoadonByID(int maHoaDon)
-        {
-            // Sử dụng Entity Framework để gọi thủ tục và truy vấn dữ liệu từ cơ sở dữ liệu
-            var hoadon = _context.HoaDons.FromSqlRaw("EXEC sp_hoadon_get_by_id @MaHoaDon", new SqlParameter("@MaHoaDon", maHoaDon)).FirstOrDefault();
-
-            return hoadon;
-        }
+        return hoadon;
     }
 }

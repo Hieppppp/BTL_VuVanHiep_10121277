@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetHoaDonById(int id)
         {
-            HoaDonModel hoadon = _hoaDonBL.GetHoaDonById(id);
+            HoaDonModel hoadon = _hoaDonBL.GetHoadonByID(id);
 
             if (hoadon == null)
             {

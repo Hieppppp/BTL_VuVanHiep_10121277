@@ -14,10 +14,14 @@ namespace BLL
     {
         private IHoaDonDA _res;
 
-        public HoaDonModel GetHoaDonById(int maHoaDon)
+
+        public HoaDonModel GetHoadonByID(int maHoaDon)
         {
-            return _res.GetHoaDonById(maHoaDon);
+            return _res.GetHoadonByID(maHoaDon);
         }
+
+
+
 
     }
 }

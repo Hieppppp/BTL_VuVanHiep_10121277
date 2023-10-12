@@ -9,6 +9,6 @@ namespace DAL.Interfaces
 {
     public interface IHoaDonDA
     {
-        HoaDonModel GetHoaDonById(int maHoaDon);
+        HoaDonModel GetHoadonByID(int maHoaDon);
     }
 }

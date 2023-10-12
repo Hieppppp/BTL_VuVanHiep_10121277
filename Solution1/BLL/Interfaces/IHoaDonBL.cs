@@ -9,6 +9,6 @@ namespace BLL.Interfaces
 {
     public interface IHoaDonBL
     {
-        HoaDonModel GetHoaDonById(int maHoaDon);
+        HoaDonModel GetHoadonByID(int maHoaDon);
     }
 }
