@@ -9,7 +9,7 @@ namespace DAL.Interfaces
 {
     public interface IKhachHangDA
     {
-       
+
         void InsertKhachHang(string tenKhachHang, bool gioiTinh, string diaChi, string sdt, string email);
         KhachHangModel getByID(int id);
 

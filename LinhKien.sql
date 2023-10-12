@@ -504,6 +504,22 @@ INSERT [dbo].[TaiKhoans] ([MaTaiKhoan], [LoaiTaiKhoan], [TenTaiKhoan], [MatKhau]
 SET IDENTITY_INSERT [dbo].[TaiKhoans] OFF
 GO
 SELECT * from [TaiKhoans]
+GO
+
+--Tìm kiếm id hóa đơn
+CREATE PROCEDURE sp_hoadon_get_by_id(@MaHoaDon        int)
+AS
+    BEGIN
+        SELECT h.*, 
+        (
+            SELECT c.*
+            FROM ChiTietHoaDons AS c
+            WHERE h.MaHoaDon = c.MaHoaDon FOR JSON PATH --trả về dưới dạng JSON bằng FOR JSON PATH. Điều này tạo ra một chuỗi JSON chứa thông tin về chi tiết hóa đơn.
+        ) AS list_json_chitiethoadon
+        FROM HoaDons AS h
+        WHERE  h.MaHoaDon = @MaHoaDon;
+    END;
+GO
 
 
 
