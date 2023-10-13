@@ -34,7 +34,6 @@ namespace WebAPI.Controllers
 
             }
         }
-
         //Tìm kiếm mã khách hàng theo id
         [Route("get-by-id/{id}")]
         [HttpGet]
@@ -42,9 +41,9 @@ namespace WebAPI.Controllers
         {
             return _khachHangBL.getById(id);
         }
+        //Update khách hàng
         [Route("update-khachhang")]
         [HttpPost]
-
         public IActionResult updateKhachHang([FromBody] KhachHangModel model)
         {
             try
@@ -57,7 +56,7 @@ namespace WebAPI.Controllers
                 return BadRequest($"Lỗi:{ex.Message}");
             }
         }
-
+        //Xóa khách hàng theo mã id
         [Route("delete-khachhang/{id}")]
         [HttpDelete]
         public IActionResult DeleteKhachHang(int id)

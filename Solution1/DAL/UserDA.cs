@@ -1,58 +1,66 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using WebAPI.Models;
-//using DataModel;
-//using Microsoft.Data.SqlClient;
-//using Microsoft.EntityFrameworkCore;
-//using DAL.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WebAPI.Models;
+using DataModel;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using DAL.Interfaces;
+using Microsoft.Extensions.Configuration;
+using System.Data;
 
-//namespace DAL
-//{
-//    public class UserDA:IUserDA
-//    {
-//        private readonly LINHKIENContext _context;
+namespace DAL
+{
+    public class UserDA : IUserDA
+    {
+        private string connectionString;
 
-//        public UserDA(LINHKIENContext context)
-//        {
-//            _context = context;
-//        }
+        public UserDA(IConfiguration configuration)
+        {
+            connectionString = configuration.GetConnectionString("connect");
+        }
 
-//        public UserModel Login(string taikhoan, string matkhau)
-//        {
-            
-//            try
-//            {
-//                var dt = _context.TaiKhoans.FromSqlRaw("EXEC sp_login @taikhoan, @matkhau",
-//                    new SqlParameter("@taikhoan", taikhoan),
-//                    new SqlParameter("@matkhau", matkhau))
-//                    .AsEnumerable() // Chuyển sang phía máy khách
-//                    .SingleOrDefault();
+        public UserModel Login(string taikhoan, string matkhau)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("sp_login", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@taikhoan", taikhoan));
+                        command.Parameters.Add(new SqlParameter("@matkhau", matkhau));
 
-//                if (dt != null)
-//                {
-//                    // Tạo một đối tượng UserModel và sao chép dữ liệu từ đối tượng taiKhoans
-//                    UserModel user = new UserModel
-//                    {
-//                        MaTaiKhoan = dt.MaTaiKhoan,
-//                        LoaiTaiKhoan = dt.LoaiTaiKhoan,
-//                        TenTaiKhoan = dt.TenTaiKhoan,
-//                        MatKhau = dt.MatKhau,
-//                        Email = dt.Email
-//                    };
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            var dt = new UserModel();
 
-//                    return user;
-//                }
+                            while (reader.Read())
+                            {
+                                // Đọc dữ liệu từ SqlDataReader và cài đặt thuộc tính của UserModel
+                                dt.MaTaiKhoan = reader.GetInt32(reader.GetOrdinal("MaTaiKhoan"));
+                                dt.LoaiTaiKhoan = reader.GetInt32(reader.GetOrdinal("LoaiTaiKhoan"));
+                                dt.TenTaiKhoan = reader.GetString(reader.GetOrdinal("TenTaiKhoan"));
+                                dt.MatKhau = reader.GetString(reader.GetOrdinal("MatKhau"));
+                                dt.Email = reader.GetString(reader.GetOrdinal("Email"));
+                            }
 
-//                return null; // Trả về null nếu không tìm thấy tài khoản
-//            }
-//            catch (Exception ex)
-//            {
-//                throw new Exception(ex.Message);
-//            }
-            
-//        }
-//    }
-//}
+                            return dt;
+                        }
+                    }
+                }
+
+                return null; // Trả về null nếu không tìm thấy tài khoản
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+
+}

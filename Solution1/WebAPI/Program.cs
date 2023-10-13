@@ -55,8 +55,8 @@ builder.Services.AddDbContext<LINHKIENContext>(options =>
 //Khai báo ?? ch?y ??i t??ng
 builder.Services.AddScoped<IKhachHangBL,KhachHangBL>();
 builder.Services.AddScoped<IKhachHangDA,KhachHangDA>();
-//builder.Services.AddScoped<IUserBL, UserBL>();
-//builder.Services.AddScoped<IUserDA, UserDA>();
+builder.Services.AddScoped<IUserBL, UserBL>();
+builder.Services.AddScoped<IUserDA, UserDA>();
 builder.Services.AddScoped<IHoaDonBL, HoaDonBL>();
 
 

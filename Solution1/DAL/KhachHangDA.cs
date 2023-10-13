@@ -11,12 +11,7 @@ namespace DAL
 {
     public class KhachHangDA : IKhachHangDA
     {
-        //private readonly LINHKIENContext _context;
-
-        //public KhachHangDA(LINHKIENContext dbcontext)
-        //{
-        //    _context = dbcontext;
-        //}
+        
         public string connectionString;
         public KhachHangDA(IConfiguration configuration)
         {
@@ -75,7 +70,6 @@ namespace DAL
             return khachhang;
         }
 
-
         //Sủa khách hàng
         public void upDateKhachHang(int id, string tenkh, bool gioitinh, string diachi, string sdt, string email)
         {
@@ -126,8 +120,7 @@ namespace DAL
                 throw ex;
             }
         }
-        
-        ////Search
+        //Search
         //public List<KhachHangModel> searchKhachHang(int pageIndex, int pageSize, out long total, string tenKhach, string diaChi)
         //{
         //    total = 0;
