@@ -58,6 +58,7 @@ builder.Services.AddScoped<IKhachHangDA,KhachHangDA>();
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDA, UserDA>();
 builder.Services.AddScoped<IHoaDonBL, HoaDonBL>();
+builder.Services.AddScoped<IHoaDonDA,HoaDonDA>();
 
 
 var app = builder.Build();

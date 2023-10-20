@@ -9,6 +9,9 @@ namespace BLL.Interfaces
 {
     public interface IHoaDonBL
     {
-        HoaDonModel GetHoadonByID(int maHoaDon);
+        HoaDonModel GetDatabyID(int maHoaDon);
+        void CreateHoaDon(HoaDonModel model);
+        void UpdateHoaDon(int maHoaDon, string tenKH, string diachi, bool trangThai, string list_json_chitiethoadon);
+       
     }
 }

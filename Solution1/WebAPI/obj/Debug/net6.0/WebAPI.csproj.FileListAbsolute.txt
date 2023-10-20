@@ -397,3 +397,4 @@ C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\WebAPI\obj\Debug\net6.0\WebA
 C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\WebAPI\obj\Debug\net6.0\ref\WebAPI.dll
 C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\BTLLTDV\BTL_PTPMHDV_VuVanHiep_10121277\Solution1\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll

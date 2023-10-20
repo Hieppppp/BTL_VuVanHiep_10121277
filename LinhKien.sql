@@ -52,6 +52,8 @@ CREATE TABLE [dbo].[ChiTietHoaDons](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+-- Thêm một bản ghi mới vào bảng ChiTietHoaDons
+
 
 CREATE TABLE [dbo].[ChiTietSanPhams](
 	[MaChiTietSanPham] [int] IDENTITY(1,1) NOT NULL,
@@ -92,7 +94,10 @@ CREATE TABLE [dbo].[ChuyenMucs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-
+-- Thêm một bản ghi mới vào bảng ChuyenMucs
+INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
+VALUES (1, N'MODULE Cảm Biến', 0, N'Null');
+GO
 CREATE TABLE [dbo].[DKBanTins](
 	[Id] [int] NOT NULL,
 	[Email] [nvarchar](50) NOT NULL,
@@ -147,6 +152,11 @@ CREATE TABLE [dbo].[HoaDons](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+-- Thay đổi trường GioiTinh từ NOT NULL thành NULL
+ALTER TABLE HoaDons
+ALTER COLUMN GioiTinh bit NULL;
+GO
+
 
 CREATE TABLE [dbo].[KhachHangs](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -216,7 +226,6 @@ CREATE TABLE [dbo].[SanPhams](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 CREATE TABLE [dbo].[SanPhams_NhaPhanPhois](
 	[MaSanPham] [int] NOT NULL,
 	[MaNhaPhanPhoi] [int] NOT NULL,
@@ -503,11 +512,36 @@ INSERT [dbo].[TaiKhoans] ([MaTaiKhoan], [LoaiTaiKhoan], [TenTaiKhoan], [MatKhau]
 INSERT [dbo].[TaiKhoans] ([MaTaiKhoan], [LoaiTaiKhoan], [TenTaiKhoan], [MatKhau], [Email]) VALUES (2, 1, N'vhiep', N'123456', N'vhiep@gmail.com')
 SET IDENTITY_INSERT [dbo].[TaiKhoans] OFF
 GO
-SELECT * from [TaiKhoans]
+SELECT * from [HoaDons]
+GO
+SET IDENTITY_INSERT [dbo].[SanPhams] ON 
+INSERT [dbo].[SanPhams] ([MaSanPham], [MaChuyenMuc], [TenSanPham], [AnhDaiDien], [Gia], [GiaGiam], [SoLuong], [TrangThai], [LuotXem], [DacBiet]) 
+VALUES (1, 1, N'Cảm biến quang điện', N'/Images/Products/1090_may_cay_bo_dien_da_nang_mht_400.JPG', CAST(8990000 AS Decimal(18, 0)), CAST(0 AS Decimal(18, 0)), 200, 1, 0, 1)
+SET IDENTITY_INSERT [dbo].[SanPhams] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ChiTietHoaDons] ON 
+INSERT [dbo].[ChiTietHoaDons]([MaChiTietHoaDon],[MaHoaDon],[MaSanPham],[SoLuong],[TongGia])
+VALUES (1,1,1,5,100.00)
+SET IDENTITY_INSERT [dbo].[ChiTietHoaDons] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ChiTietHoaDons] ON 
+INSERT [dbo].[ChiTietHoaDons]([MaChiTietHoaDon],[MaHoaDon],[MaSanPham],[SoLuong],[TongGia])
+VALUES (2,1,1,10,100.00)
+SET IDENTITY_INSERT [dbo].[ChiTietHoaDons] OFF
+GO
+--Thêm thông tin hóa đơn
+-- Thêm một bản ghi mới vào bảng HoaDons
+INSERT INTO HoaDons (TrangThai, NgayTao, NgayDuyet, TongGia, TenKH, GioiTinh, Diachi, Email, SDT, DiaChiGiaoHang, ThoiGianGiaoHang)
+VALUES (1, GETDATE(), NULL, 250.00, N'Vũ Văn Hiệp', 1, N'Hưng Yên', N'vanhiep@gmail.com', N'91928821991', N'KhoaiChau-HungYen', GETDATE());
+INSERT INTO HoaDons (TrangThai, NgayTao, NgayDuyet, TongGia, TenKH, GioiTinh, Diachi, Email, SDT, DiaChiGiaoHang, ThoiGianGiaoHang)
+VALUES (1, GETDATE(), NULL, 300.00, N'Lê Văn Tân', 1, N'Hưng Yên', N'vantan@gmail.com', N'91928821991', N'Khoái Châu-Hưng Yên', GETDATE());
+
+
+select* from ChiTietHoaDons
 GO
 
 --Tìm kiếm id hóa đơn
-CREATE PROCEDURE sp_hoadon_get_by_id(@MaHoaDon        int)
+CREATE PROCEDURE sp_hoadon_get_by_id(@MaHoaDon int)
 AS
     BEGIN
         SELECT h.*, 
@@ -520,7 +554,112 @@ AS
         WHERE  h.MaHoaDon = @MaHoaDon;
     END;
 GO
+--Tạo hóa đơn bán hàng
+CREATE PROCEDURE sp_hoadon_create
+(@TenKH              NVARCHAR(50), 
+ @Diachi          NVARCHAR(250), 
+ @TrangThai         bit,  
+ @list_json_chitiethoadon NVARCHAR(MAX)
+)
+AS
+    BEGIN
+		DECLARE @MaHoaDon INT;
+        INSERT INTO HoaDons
+                (TenKH, 
+                 Diachi, 
+                 TrangThai               
+                )
+                VALUES
+                (@TenKH, 
+                 @Diachi, 
+                 @TrangThai
+                );
 
+				SET @MaHoaDon = (SELECT SCOPE_IDENTITY());
+                IF(@list_json_chitiethoadon IS NOT NULL)
+                    BEGIN
+                        INSERT INTO ChiTietHoaDons
+						 (MaSanPham, 
+						  MaHoaDon,
+                          SoLuong, 
+                          TongGia               
+                        )
+                    SELECT JSON_VALUE(p.value, '$.maSanPham'), 
+                            @MaHoaDon, 
+                            JSON_VALUE(p.value, '$.soLuong'), 
+                            JSON_VALUE(p.value, '$.tongGia')    
+                    FROM OPENJSON(@list_json_chitiethoadon) AS p;
+                END;
+        SELECT '';
+    END;
+GO
+
+--Update hóa đơn
+CREATE PROCEDURE sp_hoa_don_update
+(@MaHoaDon        int, 
+ @TenKH              NVARCHAR(50), 
+ @Diachi          NVARCHAR(250), 
+ @TrangThai         bit,  
+ @list_json_chitiethoadon NVARCHAR(MAX)
+)
+AS
+    BEGIN
+		UPDATE HoaDons
+		SET
+			TenKH  = @TenKH ,
+			Diachi = @Diachi,
+			TrangThai = @TrangThai
+		WHERE MaHoaDon = @MaHoaDon;
+		
+		IF(@list_json_chitiethoadon IS NOT NULL) 
+		BEGIN
+			 -- Insert data to temp table 
+		   SELECT
+			  JSON_VALUE(p.value, '$.maChiTietHoaDon') as maChiTietHoaDon,
+			  JSON_VALUE(p.value, '$.maHoaDon') as maHoaDon,
+			  JSON_VALUE(p.value, '$.maSanPham') as maSanPham,
+			  JSON_VALUE(p.value, '$.soLuong') as soLuong,
+			  JSON_VALUE(p.value, '$.tongGia') as tongGia,
+			  JSON_VALUE(p.value, '$.status') AS status 
+			  INTO #Results 
+		   FROM OPENJSON(@list_json_chitiethoadon) AS p;
+		 
+		 -- Insert data to table with STATUS = 1;
+			INSERT INTO ChiTietHoaDons (MaSanPham, 
+						  MaHoaDon,
+                          SoLuong, 
+                          TongGia ) 
+			   SELECT
+				  #Results.maSanPham,
+				  @MaHoaDon,
+				  #Results.soLuong,
+				  #Results.tongGia			 
+			   FROM  #Results 
+			   WHERE #Results.status = '1' 
+			
+			-- Update data to table with STATUS = 2
+			  UPDATE ChiTietHoaDons 
+			  SET
+				 SoLuong = #Results.soLuong,
+				 TongGia = #Results.tongGia
+			  FROM #Results 
+			  WHERE  ChiTietHoaDons.maChiTietHoaDon = #Results.maChiTietHoaDon AND #Results.status = '2';
+			
+			-- Delete data to table with STATUS = 3
+			DELETE C
+			FROM ChiTietHoaDons C
+			INNER JOIN #Results R
+				ON C.maChiTietHoaDon=R.maChiTietHoaDon
+			WHERE R.status = '3';
+			DROP TABLE #Results;
+		END;
+        SELECT '';
+    END;
+GO
+
+SELECT* FROM SanPhams
+SELECT* FROM HoaDons
+SELECT* FROM ChiTietHoaDons
 
 
 
