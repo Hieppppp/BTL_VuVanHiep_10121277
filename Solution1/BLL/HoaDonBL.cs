@@ -33,6 +33,15 @@ namespace BLL
             _hoaDonDA.UpdateHoaDon(maHoaDon, tenKH, diachi, trangThai, list_json_chitiethoadon);
         }
 
+        public void deleteHoaDon(int id)
+        {
+            _hoaDonDA.deleteHoaDon(id);
+        }
+        public List<ThongKeKhachModels> ThongKeKhach(int pageIndex, int pageSize, out long total, string ten_khach, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            return _hoaDonDA.ThongKeKhach(pageIndex, pageSize, out total, ten_khach, fr_NgayTao, to_NgayTao);
+        }
+
 
 
 

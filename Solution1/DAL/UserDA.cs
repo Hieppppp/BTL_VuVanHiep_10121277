@@ -61,6 +61,72 @@ namespace DAL
                 throw new Exception(ex.Message);
             }
         }
+        public UserModel TimKiemTaiKhoanByMa(int maTaiKhoan)
+        {
+            UserModel user = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_timkiemtaikhoanByMa", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@MaTaiKhoan", maTaiKhoan);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user = new UserModel
+                            {
+                                MaTaiKhoan = reader.GetInt32(reader.GetOrdinal("MaTaiKhoan")),
+                                LoaiTaiKhoan = reader.IsDBNull(reader.GetOrdinal("LoaiTaiKhoan")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("LoaiTaiKhoan")),
+                                TenTaiKhoan = reader.GetString(reader.GetOrdinal("TenTaiKhoan")),
+                                MatKhau = reader.GetString(reader.GetOrdinal("MatKhau")),
+                                Email = reader.GetString(reader.GetOrdinal("Email"))
+                            };
+                        }
+                    }
+                }
+            }
+
+            return user;
+        }
+        public List<UserModel> GetAllTaiKhoans()
+        {
+            List<UserModel> users = new List<UserModel>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_getall_taikhoans", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            UserModel user = new UserModel
+                            {
+                                MaTaiKhoan = reader.GetInt32(reader.GetOrdinal("MaTaiKhoan")),
+                                LoaiTaiKhoan = reader.IsDBNull(reader.GetOrdinal("LoaiTaiKhoan")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("LoaiTaiKhoan")),
+                                TenTaiKhoan = reader.GetString(reader.GetOrdinal("TenTaiKhoan")),
+                                MatKhau = reader.GetString(reader.GetOrdinal("MatKhau")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                            };
+
+                            users.Add(user);
+                        }
+                    }
+                }
+            }
+
+            return users;
+        }
+
     }
 
 }

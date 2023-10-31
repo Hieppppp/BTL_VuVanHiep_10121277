@@ -120,51 +120,50 @@ namespace DAL
                 throw ex;
             }
         }
-        //Search
-        //public List<KhachHangModel> searchKhachHang(int pageIndex, int pageSize, out long total, string tenKhach, string diaChi)
-        //{
-        //    total = 0;
-        //    List<KhachHangModel> khachHangs = new List<KhachHangModel>();
+        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi)
+        {
+            total = 0;
+            List<KhachHangModel> khachModels = new List<KhachHangModel>();
 
-        //    try
-        //    {
-        //        // Thực hiện truy vấn sử dụng Entity Framework Core
-        //        khachHangs = _context.KhachHangs
-        //        .FromSqlRaw("sp_khach_search @page_index, @page_size, @ten_khach, @dia_chi",
-        //            new SqlParameter("@page_index", pageIndex),
-        //            new SqlParameter("@page_size", pageSize),
-        //            new SqlParameter("@ten_khach", tenKhach),
-        //            new SqlParameter("@dia_chi", diaChi))
-        //        .Select(kh => new KhachHangModel
-        //        {
-        //            Id = kh.Id,
-        //            TenKh = kh.TenKh,
-        //            GioiTinh = kh.GioiTinh,
-        //            DiaChi = kh.DiaChi,
-        //            Sdt = kh.Sdt,
-        //            Email = kh.Email
-        //            // Các thuộc tính khác tương tự
-        //        })
-        //        .ToList();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand("sp_khach_search", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@page_index", pageIndex);
+                    cmd.Parameters.AddWithValue("@page_size", pageSize);
+                    cmd.Parameters.AddWithValue("@ten_khach", ten_khach);
+                    cmd.Parameters.AddWithValue("@dia_chi", dia_chi);
 
+                    SqlParameter totalParameter = new SqlParameter("@total", SqlDbType.BigInt);
+                    totalParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(totalParameter);
 
-        //        // Lấy tổng số lượng bản ghi
-        //        total = _context.KhachHangs
-        //            .FromSqlRaw("sp_khach_search @page_index, @page_size, @ten_khach, @dia_chi",
-        //                new SqlParameter("@page_index", pageIndex),
-        //                new SqlParameter("@page_size", pageSize),
-        //                new SqlParameter("@ten_khach", tenKhach),
-        //                new SqlParameter("@dia_chi", diaChi))
-        //            .Count();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Xử lý lỗi
-        //        throw ex;
-        //    }
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            KhachHangModel khachModel = new KhachHangModel
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                TenKh = reader["TenKH"].ToString(),
+                                // Thêm các thuộc tính khác ở đây
+                            };
+                            khachModels.Add(khachModel);
+                        }
+                    }
 
-        //    return khachHangs;
-        //}
+                    if (totalParameter.Value != DBNull.Value)
+                    {
+                        total = Convert.ToInt64(totalParameter.Value);
+                    }
+                }
+            }
+
+            return khachModels;
+        }
+
 
     }
 }

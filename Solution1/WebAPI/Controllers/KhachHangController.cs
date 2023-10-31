@@ -71,44 +71,35 @@ namespace WebAPI.Controllers
                 return BadRequest($"Lỗi: {ex.Message}");
             }
         }
-        //[Route("search")]
-        //[HttpPost]
-        //public IActionResult Search([FromBody] Dictionary<string,object> fromData)
-        //{
-        //    try
-        //    {
-        //        var page = int.Parse(fromData["page"].ToString());
-        //        var pageSize = int.Parse(fromData["pageSize"].ToString());
-        //        string ten_khach="";
-        //        if (fromData.Keys.Contains("ten_khach") && !string.IsNullOrEmpty(Convert.ToString(fromData["ten_khach"])))
-        //        {
-        //            ten_khach = Convert.ToString(fromData["ten_Khach"]);
-        //        }
-        //        string dia_chi = "";
-        //        if (fromData.Keys.Contains("dia_chi") && !string.IsNullOrEmpty(Convert.ToString(fromData["dia_chi"])))
-        //        { 
-        //            dia_chi = Convert.ToString(fromData["dia_chi"]);
-        //        }
-        //        long total = 0;
-        //        var data = _khachHangBL.searchKhachHang(page, pageSize, out total, ten_khach, dia_chi);
-        //        return Ok(
-        //            new
-        //            {
-        //                TotalItems = total,
-        //                Data = data,
-        //                Page = page,
-        //                PageSize = pageSize
-        //            }
-        //            );
-
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
-
-
+        [Route("search")]
+        [HttpPost]
+        public IActionResult Search([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                string ten_khach = "";
+                if (formData.Keys.Contains("ten_khach") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_khach"]))) { ten_khach = Convert.ToString(formData["ten_khach"]); }
+                string dia_chi = "";
+                if (formData.Keys.Contains("dia_chi") && !string.IsNullOrEmpty(Convert.ToString(formData["dia_chi"]))) { dia_chi = Convert.ToString(formData["dia_chi"]); }
+                long total = 0;
+                var data = _khachHangBL.Search(page, pageSize, out total, ten_khach, dia_chi);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    }
+                    );
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 }

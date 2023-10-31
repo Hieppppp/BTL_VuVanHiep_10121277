@@ -34,12 +34,12 @@ namespace BLL
             _khachHangDA.deleteKhachHang(id);
         }
 
-        
 
-        //public List<KhachHangModel> searchKhachHang(int pageIndex, int pageSize, out long total, string tenKhach, string diaChi)
-        //{
-        //   return _khachHangDA.searchKhachHang(pageIndex, pageSize, out total, tenKhach, diaChi);
-        //}
+
+        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi)
+        {
+            return _khachHangDA.Search(pageIndex, pageSize, out total, ten_khach, dia_chi);
+        }
 
 
     }

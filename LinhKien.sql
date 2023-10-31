@@ -97,6 +97,17 @@ GO
 -- Thêm một bản ghi mới vào bảng ChuyenMucs
 INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
 VALUES (1, N'MODULE Cảm Biến', 0, N'Null');
+INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
+VALUES (2, N'Đèn LEG, Điều khiển LEG', 0, N'Null');
+INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
+VALUES (3, N'Điện dân dụng và Công nghiệp', 0, N'Null');
+INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
+VALUES (4, N'Điện năng lượng mặt trời', 0, N'Null');
+INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
+VALUES (5, N'Đồng hô vạn năng', 0, N'Null');
+INSERT INTO ChuyenMucs (MaChuyenMucCha, TenChuyenMuc, DacBiet, NoiDung)
+VALUES (6, N'Máy in 3D', 0, N'Null');
+
 GO
 CREATE TABLE [dbo].[DKBanTins](
 	[Id] [int] NOT NULL,
@@ -489,7 +500,7 @@ AS
     END;
 GO
 
---Hàm procudre tài khoản
+--Hàm procudre login
 CREATE PROCEDURE sp_login (@taikhoan nvarchar(50), @matkhau nvarchar(50))
 AS
     BEGIN
@@ -497,6 +508,47 @@ AS
       FROM TaiKhoans
       where TenTaiKhoan= @taikhoan and MatKhau = @matkhau;
     END;
+GO
+--Hàm procudure tìm kiếm tài khoản
+CREATE PROCEDURE sp_timkiemtaikhoan
+    @MaTaiKhoan INT = NULL,
+    @LoaiTaiKhoan INT = NULL,
+    @TenTaiKhoan NVARCHAR(50) = NULL,
+    @MatKhau NVARCHAR(50) = NULL,
+    @Email NVARCHAR(150) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM TaiKhoans
+    WHERE
+        (@MaTaiKhoan IS NULL OR MaTaiKhoan = @MaTaiKhoan)
+        AND (@LoaiTaiKhoan IS NULL OR LoaiTaiKhoan = @LoaiTaiKhoan)
+        AND (@TenTaiKhoan IS NULL OR TenTaiKhoan = @TenTaiKhoan)
+        AND (@MatKhau IS NULL OR MatKhau = @MatKhau)
+        AND (@Email IS NULL OR Email = @Email);
+END;
+GO
+--Tìm kiếm tài khoản theo mã
+CREATE PROCEDURE sp_timkiemtaikhoanByMa
+    @MaTaiKhoan INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM TaiKhoans
+    WHERE MaTaiKhoan = @MaTaiKhoan;
+END;
+GO
+--Lây danh sách tài khoản
+CREATE PROCEDURE sp_getall_taikhoans
+AS
+BEGIN
+
+	SELECT * FROM TaiKhoans
+END;
 GO
 
 SET IDENTITY_INSERT [dbo].[LoaiTaiKhoans] ON 
@@ -656,10 +708,120 @@ AS
         SELECT '';
     END;
 GO
+--Xóa Hóa đơn
+CREATE PROCEDURE sp_delete_hoadon
+(
+	@MaHoaDon int
+)
+AS
+BEGIN
+	DELETE FROM [HoaDons]
+	WHERE [MaHoaDon] =@MaHoaDon;
+	END;
+GO
+--Thống kê Khách Hàng
+CREATE PROCEDURE sp_thong_ke_khach (@page_index  INT, 
+                                       @page_size   INT,
+									   @ten_khach Nvarchar(50),
+									   @fr_NgayTao datetime, 
+									   @to_NgayTao datetime
+									   )
+AS
+    BEGIN
+        DECLARE @RecordCount BIGINT;
+        IF(@page_size <> 0)
+            BEGIN
+						SET NOCOUNT ON;
+                        SELECT(ROW_NUMBER() OVER(
+                              ORDER BY h.NgayTao ASC)) AS RowNumber, 
+                              s.MaSanPham,
+							  s.TenSanPham,
+							  c.SoLuong,
+							  c.TongGia,
+							  h.NgayTao,
+							  h.TenKH,
+							  h.Diachi
+                        INTO #Results1
+                        FROM HoaDons  h
+						inner join ChiTietHoaDons c on c.MaHoaDon = h.MaHoaDon
+						inner join SanPhams s on s.MaSanPham = c.MaSanPham
+					    WHERE  (@ten_khach = '' Or h.TenKH like N'%'+@ten_khach+'%') and						
+						((@fr_NgayTao IS NULL
+                        AND @to_NgayTao IS NULL)
+                        OR (@fr_NgayTao IS NOT NULL
+                            AND @to_NgayTao IS NULL
+                            AND h.NgayTao >= @fr_NgayTao)
+                        OR (@fr_NgayTao IS NULL
+                            AND @to_NgayTao IS NOT NULL
+                            AND h.NgayTao <= @to_NgayTao)
+                        OR (h.NgayTao BETWEEN @fr_NgayTao AND @to_NgayTao))              
+                        SELECT @RecordCount = COUNT(*)
+                        FROM #Results1;
+                        SELECT *, 
+                               @RecordCount AS RecordCount
+                        FROM #Results1
+                        WHERE ROWNUMBER BETWEEN(@page_index - 1) * @page_size + 1 AND(((@page_index - 1) * @page_size + 1) + @page_size) - 1
+                              OR @page_index = -1;
+                        DROP TABLE #Results1; 
+            END;
+            ELSE
+            BEGIN
+						SET NOCOUNT ON;
+                        SELECT(ROW_NUMBER() OVER(
+                              ORDER BY h.NgayTao ASC)) AS RowNumber, 
+                              s.MaSanPham,
+							  s.TenSanPham,
+							  c.SoLuong,
+							  c.TongGia,
+							  h.NgayTao,
+							  h.TenKH,
+							  h.Diachi
+                        INTO #Results2
+                        FROM HoaDons  h
+						inner join ChiTietHoaDons c on c.MaHoaDon = h.MaHoaDon
+						inner join SanPhams s on s.MaSanPham = c.MaSanPham
+					    WHERE  (@ten_khach = '' Or h.TenKH like N'%'+@ten_khach+'%') and						
+						((@fr_NgayTao IS NULL
+                        AND @to_NgayTao IS NULL)
+                        OR (@fr_NgayTao IS NOT NULL
+                            AND @to_NgayTao IS NULL
+                            AND h.NgayTao >= @fr_NgayTao)
+                        OR (@fr_NgayTao IS NULL
+						AND @to_NgayTao IS NOT NULL
+                            AND h.NgayTao <= @to_NgayTao)
+                        OR (h.NgayTao BETWEEN @fr_NgayTao AND @to_NgayTao))              
+                        SELECT @RecordCount = COUNT(*)
+                        FROM #Results2;
+                        SELECT *, 
+                               @RecordCount AS RecordCount
+                        FROM #Results2                        
+                        DROP TABLE #Results2; 
+        END;
+    END;
+GO
+--Tạo sản phẩm
+CREATE PROCEDURE sp_sanpham_get_by_id (@MaSanPham int)
+AS
+    BEGIN
+		DECLARE @MaChuyenMuc int;
+		set @MaChuyenMuc = (select MaChuyenMuc from SanPhams where MaSanPham = @MaSanPham);
+        SELECT s.*, 
+        (
+            SELECT top 6 sp.*
+            FROM SanPhams AS sp
+            WHERE sp.MaChuyenMuc = s.MaChuyenMuc FOR JSON PATH
+        ) AS list_json_chitiethoadon
 
+        FROM SanPhams AS s
+        WHERE  s.MaSanPham = @MaSanPham;
+    END;
+GO
+
+SELECT* FROM ChuyenMucs
 SELECT* FROM SanPhams
 SELECT* FROM HoaDons
 SELECT* FROM ChiTietHoaDons
+SELECT* FROM KhachHangs
 
 
 

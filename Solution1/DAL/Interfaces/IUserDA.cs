@@ -10,5 +10,7 @@ namespace DAL.Interfaces
     public interface IUserDA
     {
         UserModel Login(string taikhoan, string matkhau);
+        UserModel TimKiemTaiKhoanByMa(int maTaiKhoan);
+        List<UserModel> GetAllTaiKhoans();
     }
 }

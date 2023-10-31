@@ -1,4 +1,5 @@
 ﻿using BLL.Interfaces;
+using DAL;
 using DAL.Interfaces;
 using DataModel;
 using Microsoft.Extensions.Configuration;
@@ -59,5 +60,15 @@ namespace BLL
 
             return null; // Trả về null nếu đăng nhập không thành công
         }
+        public UserModel TimKiemTaiKhoanByMa(int maTaiKhoan)
+        {
+            return _userDA.TimKiemTaiKhoanByMa(maTaiKhoan);
+        }
+
+        public List<UserModel> GetAllTaiKhoans()
+        {
+            return _userDA.GetAllTaiKhoans();
+        }
     }
+    
 }

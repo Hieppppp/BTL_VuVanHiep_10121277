@@ -116,4 +116,91 @@ public class HoaDonDA:IHoaDonDA
             }
         }
     }
+    //Xóa Hóa đơn
+    public void deleteHoaDon(int id)
+    {
+        try
+        {
+            using (SqlConnection connection=new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("sp_delete_hoadon", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@MaHoaDon", id));
+                    command.ExecuteNonQuery();
+                }
+
+
+            }
+
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Thống kê hóa đơn
+    public List<ThongKeKhachModels> Search(int pageIndex, int pageSize, out long total, string ten_khach, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+    {
+        total = 0;
+        List<ThongKeKhachModels> thongKeKhachModels = new List<ThongKeKhachModels>();
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            using (SqlCommand cmd = new SqlCommand("sp_thong_ke_khach", connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@page_index", pageIndex);
+                cmd.Parameters.AddWithValue("@page_size", pageSize);
+                cmd.Parameters.AddWithValue("@ten_khach", ten_khach);
+                cmd.Parameters.AddWithValue("@fr_NgayTao", fr_NgayTao);
+                cmd.Parameters.AddWithValue("@to_NgayTao", to_NgayTao);
+
+                SqlParameter totalParameter = new SqlParameter("@total", SqlDbType.BigInt);
+                totalParameter.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(totalParameter);
+
+                DataTable dt = new DataTable();
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = (long)totalParameter.Value;
+                    thongKeKhachModels = ConvertDataTableToList(dt);
+                }
+            }
+        }
+
+        return thongKeKhachModels;
+    }
+
+    private List<ThongKeKhachModels> ConvertDataTableToList(DataTable dt)
+    {
+        List<ThongKeKhachModels> list = new List<ThongKeKhachModels>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            ThongKeKhachModels item = new ThongKeKhachModels
+            {
+                MaSanPham = Convert.ToInt32(row["MaSanPham"]),
+                TenSanPham = row["TenSanPham"].ToString(),
+                SoLuong = Convert.ToInt32(row["SoLuong"]),
+                TongGia = Convert.ToDecimal(row["TongGia"]),
+                NgayTao = Convert.ToDateTime(row["NgayTao"]),
+                TenKH = row["TenKH"].ToString(),
+                Diachi = row["Diachi"].ToString()
+            };
+            list.Add(item);
+        }
+
+        return list;
+    }
+
+
 }

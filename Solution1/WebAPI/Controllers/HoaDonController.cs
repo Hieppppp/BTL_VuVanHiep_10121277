@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL;
+using BLL.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,7 @@ namespace WebAPI.Controllers
             _hoaDonBL.CreateHoaDon(model);
             return Ok(model);
         }
+        //Update hóa đơn
         [Route("update-hoadon")]
         [HttpPost]
         public IActionResult UpdateHoaDon([FromBody] HoaDonModel model)
@@ -58,6 +60,21 @@ namespace WebAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, "Lỗi server: " + ex.Message);
+            }
+        }
+        //Xóa khách hàng theo mã id
+        [Route("delete-hoadon/{id}")]
+        [HttpDelete]
+        public IActionResult DeleteHoaDon(int id)
+        {
+            try
+            {
+                _hoaDonBL.deleteHoaDon(id);
+                return Ok($"Hóa đơn với mã {id} đã được xóa thành công");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Lỗi: {ex.Message}");
             }
         }
     }

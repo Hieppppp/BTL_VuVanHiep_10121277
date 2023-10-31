@@ -10,5 +10,7 @@ namespace BLL.Interfaces
     public interface IUserBL
     {
         UserModel Login(string taikhoan, string matkhau);
+        UserModel TimKiemTaiKhoanByMa(int maTaiKhoan);
+        List<UserModel> GetAllTaiKhoans();
     }
 }
