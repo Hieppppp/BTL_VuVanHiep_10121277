@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj": {}
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj": {}
   },
   "projects": {
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj": {
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj",
+        "projectUniqueName": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj",
         "projectName": "WebAPI-GetWay",
-        "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj",
+        "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\WebAPI-GetWay.csproj",
         "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\obj\\",
+        "outputPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-GetWay\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",

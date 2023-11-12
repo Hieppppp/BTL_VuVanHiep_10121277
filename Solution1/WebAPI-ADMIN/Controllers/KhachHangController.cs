@@ -15,6 +15,13 @@ namespace WebAPI_ADMIN.Controllers
         {
             _khachHangBL = khachHangBL;
         }
+        //Tìm kiếm mã khách hàng theo id
+        [Route("get-by-id/{id}")]
+        [HttpGet]
+        public KhachHangModel getById(int id)
+        {
+            return _khachHangBL.getById(id);
+        }
         //Thêm mới 1 khách hàng
         [Route("create-khachhang")]
         [HttpPost]
@@ -32,16 +39,9 @@ namespace WebAPI_ADMIN.Controllers
 
             }
         }
-        //Tìm kiếm mã khách hàng theo id
-        [Route("get-by-id/{id}")]
-        [HttpGet]
-        public KhachHangModel getById(int id)
-        {
-            return _khachHangBL.getById(id);
-        }
         //Update khách hàng
         [Route("update-khachhang")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult updateKhachHang([FromBody] KhachHangModel model)
         {
             try

@@ -19,9 +19,32 @@ namespace BLL
         {
             _sanPhamDA = sanPhamDA;
         }
-        public SanPhamModel GetSanPhamById(int maSanPham)
+        public SanPhamModel GetByID(int id)
         {
-            return _sanPhamDA.GetSanPhamById(maSanPham);
+            return _sanPhamDA.GetByID(id);
         }
+        public void InsertSanPham(SanPhamModel sanPham)
+        {
+            _sanPhamDA.InsertSanPham(sanPham);
+        }
+
+        public void  UpdateSanPham(SanPhamModel sanPham)
+        {
+            _sanPhamDA.UpdateSanPham(sanPham);
+        }
+
+        public void DeleteSanPham(int id)
+        {
+            _sanPhamDA.DeleteSanPham(id);
+        }
+        public List<SanPhamModel> GetAllSanPhams()
+        {
+            return _sanPhamDA.GetAllSanPhams();
+        }
+        public List<SanPhamModel> SearchSanPhams(string keyword, int pageIndex, int pageSize, out long total)
+        {
+            return _sanPhamDA.SearchSanPhams(keyword, pageIndex, pageSize, out total);
+        }
+
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vrAd6KaTES2jG2PWsjEiY7L2s6W1qp9TZXk7firROQDXqWuMTH367muHGOvORNlhXXvsMG2Yde8bi3ODxt4Ssw==",
+  "dgSpecHash": "m6cs++xpE0hX4nFE31C+RnRZ2c9xgcUoIj5ebmC+mlKZMxh6DPmc/cPieCRQbjsxnL1mqGcbBc278Pfjz1OCbQ==",
   "success": true,
-  "projectFilePath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj",
+  "projectFilePath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trinh\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\trinh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

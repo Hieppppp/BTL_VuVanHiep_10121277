@@ -9,6 +9,11 @@ namespace DAL.Interfaces
 {
     public interface ISanPhamDA
     {
-        SanPhamModel GetSanPhamById(int maSanPham);
+        SanPhamModel GetByID(int id);
+        void InsertSanPham(SanPhamModel sanPham);
+        void UpdateSanPham(SanPhamModel sanPham);
+        void DeleteSanPham(int id);
+        List<SanPhamModel> GetAllSanPhams();
+        List<SanPhamModel> SearchSanPhams(string keyword, int pageIndex, int pageSize, out long total);
     }
 }

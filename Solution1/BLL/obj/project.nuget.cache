@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3g+hCIro3tI0jyR/gAcLPTnyA0tZadGvUwyuJ6VBFEnFhZ4nzinVijiAd1XrnxDg8zOLxl0oM0W3Fyf9o6oiVg==",
+  "dgSpecHash": "guxeJ8SUrYH+6avF0Afnp1PSaTlwRzz9ZgKg6xc0RBOjQsFNfw9EkgKOIn1A51dh6ddtaemPhGNGaoh+zja4uQ==",
   "success": true,
-  "projectFilePath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trinh\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\trinh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

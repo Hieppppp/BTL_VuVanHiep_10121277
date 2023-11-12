@@ -15,28 +15,28 @@ namespace WebAPI.Controllers
         {
             _sanPhamBL = sanPhamBL;
         }
-        [Route("get-by-id/{id}")]
-        [HttpGet]
-        public IActionResult GetSanPham(int id)
-        {
-            try
-            {
-                SanPhamModel sanPhamModel = _sanPhamBL.GetSanPhamById(id);
+        //[Route("get-by-id/{id}")]
+        //[HttpGet]
+        //public IActionResult GetSanPham(int id)
+        //{
+        //    try
+        //    {
+        //        SanPhamModel sanPhamModel = _sanPhamBL.GetSanPhamById(id);
 
-                if (sanPhamModel != null)
-                {
-                    return Ok(sanPhamModel);
-                }
-                else
-                {
-                    return NotFound("Không tìm thấy hóa đơn");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Lỗi server: " + ex.Message);
-            }
+        //        if (sanPhamModel != null)
+        //        {
+        //            return Ok(sanPhamModel);
+        //        }
+        //        else
+        //        {
+        //            return NotFound("Không tìm thấy hóa đơn");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, "Lỗi server: " + ex.Message);
+        //    }
 
-        }
+        //}
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj": {}
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj": {}
   },
   "projects": {
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj": {
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj"
+              "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj"
               },
-              "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
-                "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj"
+              "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
+                "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj": {
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -102,8 +102,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
-                "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj"
+              "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
+                "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj"
               }
             }
           }
@@ -167,14 +167,14 @@
         }
       }
     },
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj",
+        "projectUniqueName": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj",
         "projectName": "DataModel",
-        "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj",
+        "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj",
         "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\obj\\",
+        "outputPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -222,14 +222,14 @@
         }
       }
     },
-    "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj": {
+    "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj",
+        "projectUniqueName": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj",
         "projectName": "WebAPI-USER",
-        "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj",
+        "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\WebAPI-USER.csproj",
         "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\obj\\",
+        "outputPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\WebAPI-USER\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -246,14 +246,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj"
+              "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\BLL\\BLL.csproj"
               },
-              "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj"
+              "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DAL\\DAL.csproj"
               },
-              "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
-                "projectPath": "C:\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj"
+              "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj": {
+                "projectPath": "C:\\Users\\trinh\\OneDrive\\Desktop\\Học Tập\\Năm 3 (2023-2024)\\Kỳ 1\\Lập trình hướng dịch vụ (Web-API)\\BTL\\BTLLTDV\\BTL_PTPMHDV_VuVanHiep_10121277\\Solution1\\DataModel\\DataModel.csproj"
               }
             }
           }
